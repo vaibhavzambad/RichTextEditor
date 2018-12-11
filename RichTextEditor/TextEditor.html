@@ -5,10 +5,49 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>RichTextEditor</title>
+    <title>Rich Text Editor</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
-    <div contenteditable="true">
-        This text can be editable by user
-    </div>
+<body onload="initDoc();">
+    <form name="compForm">
+        <div class="container-fluid">
+            <div class=" row border border-primary rounded" id="toolBar" style="margin-top: 10px;">
+                <div class="col-sm-4">
+                    <select>
+                        <option selected> - formatting -</option>
+                        <option value="h1">Title 1 &lt;h1&gt; </option>
+                        <option value="h2">Title 2 &lt;h2&gt;</option>
+                        <option value="h3">Title 3 &lt;h3&gt;</option>
+                        <option value="h4">Title 4 &lt;h4&gt;</option>
+                        <option value="h5">Title 5 &lt;h5&gt;</option>
+                        <option value="h6">Subtitle &lt;h6&gt;</option>
+                        <option value="p">Paragraph &lt;p&gt;</option>
+                        <option value="pre">Preformatted &lt;pre&gt;</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <select onchange="formatDoc('fontname',this[this.selectedIndex].value);this.selectedIndex = 0;">
+                        <option selected> - font - </option>
+                        <option>Arial</option>
+                        <option>Arial Black</option>
+                        <option>Courier New</option>
+                        <option>Times New Roman</option>
+                    </select>
+                </div>
+            </div>
+            <div class="border border-primary rounded" style="margin-top: 100px;" >
+                <div contenteditable="true" id="textEditor">
+                    This text can be editable by user
+                </div>
+            </div>
+            <p id="editMode">
+                <input type="checkbox" name="switchMode" id="switchBox" 
+                onchange="setDocMode(this.checked);" /> 
+                <label for="switchBox">Show HTML</label></p>
+        </div>
+    </form>
+    <script type="text/javascript" src="Scripts/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrap.min.js"></script> 
+    <script type="text/javascript" src="Scripts/App Script/TextEditorScript.js"></script>
 </body>
+</html>
